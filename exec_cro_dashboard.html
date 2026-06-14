@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Al Rugaib — CRO Executive Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Manrope:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0F0F0F;--gold:#C9A84C;--gold-light:#F5EDD8;--gold-dim:#7A5F1A;
+  --muted:#6B6761;--border:#E5E0D8;--surface:#FDFBF7;--white:#fff;
+  --danger:#8B1A1A;--danger-bg:#FFF0F0;--success:#1B5E35;--success-bg:#EDF7F1;
+  --warn:#7A4F00;--warn-bg:#FEF6E4;
+  --r:0px;
+}
+body{font-family:Manrope,sans-serif;background:var(--surface);color:var(--ink);font-size:14px;line-height:1.5}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600}
+
+/* ── HEADER ── */
+header{background:var(--ink);padding:28px 40px 24px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
+header h1{color:#fff;font-size:26px;letter-spacing:-.01em}
+header p{color:rgba(255,255,255,.5);font-size:12px;margin-top:4px}
+.hd-meta{display:flex;gap:20px}
+.hd-meta span{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.04em;text-transform:uppercase}
+.hd-meta strong{display:block;font-size:13px;color:rgba(255,255,255,.85);font-weight:600;letter-spacing:0}
+
+/* ── LAYOUT ── */
+.container{max-width:1080px;margin:0 auto;padding:32px 24px}
+.section{margin-bottom:40px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:720px){.kpi-grid{grid-template-columns:1fr 1fr}}
+.kpi{background:var(--white);border:1px solid var(--border);padding:18px 20px}
+.kpi .k-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.kpi .k-val{font-size:30px;font-weight:700;font-family:'Playfair Display',serif;line-height:1}
+.kpi .k-sub{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}
+.kpi.danger .k-val{color:var(--danger)}
+.kpi.warn .k-val{color:var(--warn)}
+.kpi.success .k-val{color:var(--success)}
+.kpi.gold .k-val{color:var(--gold-dim)}
+.k-delta{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;padding:2px 7px;margin-top:6px}
+.k-delta.down{background:var(--danger-bg);color:var(--danger)}
+.k-delta.up{background:var(--success-bg);color:var(--success)}
+.k-delta.target{background:var(--gold-light);color:var(--gold-dim)}
+
+/* ── FUNNEL ── */
+.funnel-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.funnel-row .f-lbl{font-size:12px;color:var(--muted);min-width:170px}
+.funnel-row .f-track{flex:1;background:#F0EDE8;height:22px;position:relative;overflow:hidden}
+.funnel-row .f-fill{height:100%;display:flex;align-items:center;padding-left:8px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
+.funnel-row .f-pct{font-size:12px;font-weight:600;min-width:44px;text-align:right}
+.funnel-row .f-arrow{font-size:10px;color:var(--danger);font-weight:700;min-width:52px;text-align:right}
+
+/* ── COMPETITOR SPOTLIGHT ── */
+.spot-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:640px){.spot-grid{grid-template-columns:1fr}}
+.phone-wrap{background:#E8E4DE;padding:12px;display:flex;justify-content:center}
+.phone{width:200px;border:5px solid #111;border-radius:22px;overflow:hidden;background:#fff}
+.ph-bar{background:#111;color:#fff;font-size:8.5px;font-family:Manrope,sans-serif;text-align:center;padding:4px 8px;letter-spacing:.03em}
+.ph-nav{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-bottom:1px solid #E5E0D8;background:#fff}
+.ph-logo{font-family:'Playfair Display',serif;font-size:10px;font-weight:600;color:#111}
+.ph-hero{height:100px;background:#2a2420;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:8px 10px}
+.ph-hero-tag{font-size:7px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.ph-hero-h{font-family:'Playfair Display',serif;font-size:11px;color:#fff;line-height:1.2;margin-bottom:3px}
+.ph-hero-sub{font-size:7.5px;color:rgba(255,255,255,.75);margin-bottom:5px}
+.ph-btn-generic{background:#fff;color:#111;font-size:7.5px;font-weight:700;padding:4px 9px;display:inline-block;letter-spacing:.04em}
+.ph-btn-intent{background:var(--gold);color:#111;font-size:7.5px;font-weight:700;padding:4px 0;display:block;text-align:center;letter-spacing:.04em}
+.ph-trust{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #E5E0D8;background:#fff}
+.ph-trust-item{display:flex;flex-direction:column;align-items:center;padding:5px 2px;border-right:1px solid #E5E0D8;gap:2px}
+.ph-trust-item:last-child{border-right:none}
+.ph-trust-icon{font-size:11px;color:#555}
+.ph-trust-lbl{font-size:6.5px;color:#747878;text-align:center;line-height:1.2}
+.cat-grid-ph{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E5E0D8;padding:1px;margin-top:1px}
+.cat-tile-ph{height:38px;display:flex;align-items:flex-end;padding:3px 5px;position:relative;overflow:hidden}
+.cat-tile-ph .cat-n{font-size:7px;font-weight:600;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);letter-spacing:.02em}
+.no-grid-ph{padding:10px;background:#FDFBF7}
+.no-grid-ph .no-grid-label{font-size:8px;color:#9B9792;text-align:center;font-style:italic;padding:14px 0;border:1px dashed #C4C7C7}
+.ph-products{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#E5E0D8;padding:1px}
+.ph-prod{background:#fff;padding-bottom:4px}
+.ph-prod-img{width:100%;height:36px}
+.ph-prod-name{font-size:6.5px;color:#1b1c1c;padding:2px 4px;line-height:1.2}
+.ph-prod-price{font-size:7px;font-weight:600;color:#111;padding:0 4px}
+.badge-new{background:var(--gold-light);color:var(--gold-dim);font-size:6px;font-weight:700;padding:1px 4px;letter-spacing:.04em;position:absolute;top:3px;right:3px}
+
+/* insight card */
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+@media(max-width:640px){.insight-grid{grid-template-columns:1fr}}
+.insight{background:var(--white);border:1px solid var(--border);padding:16px 18px}
+.insight h4{font-size:13px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.insight p{font-size:12px;color:var(--muted);line-height:1.6}
+.insight .outcome{margin-top:10px;background:var(--success-bg);border-left:3px solid #1B5E35;padding:8px 10px;font-size:12px;font-weight:600;color:var(--success)}
+
+/* competitor bar */
+.comp-bar{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px}
+.comp-bar .co-name{min-width:100px;color:var(--muted)}
+.comp-bar .co-track{flex:1;background:#F0EDE8;height:12px}
+.comp-bar .co-fill{height:100%}
+.comp-bar .co-val{min-width:44px;font-weight:600;text-align:right}
+
+/* ── ROADMAP TABLE ── */
+.road-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.road-table th{background:var(--ink);color:#fff;padding:10px 14px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.04em}
+.road-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+.road-table tr:last-child td{border-bottom:none}
+.road-table tr:nth-child(even) td{background:#FDFAF5}
+.wk-badge{display:inline-block;padding:2px 10px;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.wk1{background:#EDF7F1;color:#1B5E35}
+.wk2{background:#EBF3FD;color:#0F4C8A}
+.wk3{background:#FEF6E4;color:#7A4F00}
+.wk4{background:#F3E8FF;color:#5B21B6}
+.impact-pill{display:inline-block;padding:1px 8px;font-size:10px;font-weight:600;border:1px solid}
+.imp-high{border-color:var(--danger);color:var(--danger)}
+.imp-med{border-color:var(--warn);color:var(--warn)}
+.tools-list{font-size:11px;color:var(--muted)}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:8px}
+footer p{font-size:11px;color:rgba(255,255,255,.4)}
+footer strong{color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>CRO Executive Dashboard</h1>
+    <p>Al Rugaib Furniture · 4-Week Homepage Optimization Plan · June 2026</p>
+  </div>
+  <div class="hd-meta">
+    <div><span>Analysis Period</span><strong>Mar 15 – Jun 12, 2026</strong></div>
+    <div><span>Sessions Analyzed</span><strong>6,768,962</strong></div>
+    <div><span>Mobile Traffic</span><strong>95%</strong></div>
+    <div><span>YTD Revenue</span><strong>SAR 35.2M</strong></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ══ SECTION 1: KPIs ══ -->
+  <div class="section">
+    <div class="section-label">Section 1 — Where we stand right now</div>
+
+    <div class="kpi-grid">
+      <div class="kpi danger">
+        <div class="k-label">Conversion Rate</div>
+        <div class="k-val">0.08%</div>
+        <div class="k-sub">Down from 0.14% previous period</div>
+        <span class="k-delta down">▼ 41.4% drop</span>
+      </div>
+      <div class="kpi warn">
+        <div class="k-label">Add-to-Cart Rate</div>
+        <div class="k-val">1.24%</div>
+        <div class="k-sub">98.8% of visitors leave without intent</div>
+        <span class="k-delta down">▼ vs 3–5% industry</span>
+      </div>
+      <div class="kpi danger">
+        <div class="k-label">Checkout Abandonment</div>
+        <div class="k-val">86.3%</div>
+        <div class="k-sub">Only 13.7% of checkouts complete</div>
+        <span class="k-delta down">▼ vs 68% benchmark</span>
+      </div>
+      <div class="kpi gold">
+        <div class="k-label">Website AOV</div>
+        <div class="k-val">SAR 2,282</div>
+        <div class="k-sub">App AOV is SAR 2,653 — 16% higher</div>
+        <span class="k-delta down">▼ 6% vs prev period</span>
+      </div>
+    </div>
+
+    <div class="kpi-grid" style="margin-top:12px">
+      <div class="kpi success">
+        <div class="k-label">CR Target (8 weeks)</div>
+        <div class="k-val">0.12%</div>
+        <div class="k-sub">50% recovery of lost conversion rate</div>
+        <span class="k-delta target">+SAR 547K/month</span>
+      </div>
+      <div class="kpi success">
+        <div class="k-label">CR Ambition (90 days)</div>
+        <div class="k-val">0.18%</div>
+        <div class="k-sub">Full recovery + lift above prior period</div>
+        <span class="k-delta target">+SAR 1.1M/month</span>
+      </div>
+      <div class="kpi success">
+        <div class="k-label">AOV Target</div>
+        <div class="k-val">SAR 2,600</div>
+        <div class="k-sub">Via dynamic shipping bar + Elevarre section</div>
+        <span class="k-delta target">+SAR 318/order</span>
+      </div>
+      <div class="kpi success">
+        <div class="k-label">Email Revenue (Year 1)</div>
+        <div class="k-val">+SAR 1.3M</div>
+        <div class="k-sub">18K new subs/month × 3% flow conversion</div>
+        <span class="k-delta target">Klaviyo capture</span>
+      </div>
+    </div>
+
+    <!-- Funnel -->
+    <div style="background:var(--white);border:1px solid var(--border);padding:20px 24px;margin-top:16px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:14px;color:var(--ink)">Conversion funnel — where revenue leaks</div>
+      <div class="funnel-row">
+        <div class="f-lbl">Sessions</div>
+        <div class="f-track"><div class="f-fill" style="width:100%;background:#1a1a1a">6,768,962</div></div>
+        <div class="f-pct">100%</div>
+        <div class="f-arrow"></div>
+      </div>
+      <div class="funnel-row">
+        <div class="f-lbl">Added to Cart</div>
+        <div class="f-track"><div class="f-fill" style="width:1.5%;background:var(--gold-dim);min-width:80px">83,849</div></div>
+        <div class="f-pct">1.24%</div>
+        <div class="f-arrow">▼ 98.8% lost</div>
+      </div>
+      <div class="funnel-row">
+        <div class="f-lbl">Reached Checkout</div>
+        <div class="f-track"><div class="f-fill" style="width:0.8%;background:#0F4C8A;min-width:60px">40,682</div></div>
+        <div class="f-pct">0.60%</div>
+        <div class="f-arrow">▼ 51.5% lost</div>
+      </div>
+      <div class="funnel-row">
+        <div class="f-lbl">Completed Purchase</div>
+        <div class="f-track"><div class="f-fill" style="width:0.2%;background:var(--success);min-width:50px">5,576</div></div>
+        <div class="f-pct">0.08%</div>
+        <div class="f-arrow">▼ 86.3% lost</div>
+      </div>
+      <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--danger-bg);border-left:3px solid var(--danger);padding:10px 12px;font-size:12px;color:var(--danger);font-weight:600">Primary leak: 98.8% never add to cart — homepage is not activating purchase intent</div>
+        <div style="background:var(--danger-bg);border-left:3px solid var(--danger);padding:10px 12px;font-size:12px;color:var(--danger);font-weight:600">Critical leak: 86.3% checkout abandonment — price anxiety + trust gaps at payment</div>
+      </div>
+    </div>
+
+    <!-- Traffic quality -->
+    <div style="background:var(--white);border:1px solid var(--border);padding:20px 24px;margin-top:12px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:14px;color:var(--ink)">Revenue per session by channel — the traffic quality gap</div>
+      <div class="comp-bar"><span class="co-name">Direct</span><div class="co-track"><div class="co-fill" style="width:90%;background:#1a1a1a"></div></div><span class="co-val">SAR 2.94</span></div>
+      <div class="comp-bar"><span class="co-name">Google CPC</span><div class="co-track"><div class="co-fill" style="width:92%;background:#0F4C8A"></div></div><span class="co-val">SAR 3.04</span></div>
+      <div class="comp-bar"><span class="co-name">Facebook Paid</span><div class="co-track"><div class="co-fill" style="width:13%;background:#1877F2"></div></div><span class="co-val">SAR 0.39</span></div>
+      <div class="comp-bar"><span class="co-name">TikTok Paid</span><div class="co-track"><div class="co-fill" style="width:3%;background:#555"></div></div><span class="co-val" style="color:var(--danger)">SAR 0.10</span></div>
+      <div class="comp-bar"><span class="co-name">Snapchat Paid</span><div class="co-track"><div class="co-fill" style="width:2%;background:#999"></div></div><span class="co-val" style="color:var(--danger)">SAR 0.09</span></div>
+      <div style="margin-top:10px;font-size:11px;color:var(--muted);background:var(--warn-bg);border-left:3px solid var(--gold);padding:8px 12px">TikTok + Snapchat = 2.09M sessions combined but only SAR 197K revenue. The homepage must be rebuilt to convert cold social traffic — Week 1 tests (hero, trust strip, BNPL) directly target this audience.</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2: COMPETITOR SPOTLIGHT ══ -->
+  <div class="section">
+    <div class="section-label">Section 2 — Competitor A/B test spotlight: visual category grid</div>
+
+    <div style="background:var(--white);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px">
+      <h2 style="font-size:18px;margin-bottom:4px">The #1 homepage gap vs every competitor</h2>
+      <p style="font-size:13px;color:var(--muted)">Home Centre, Abyat, and Wayfair all use a visual room-based category grid as their primary navigation mechanism. Al Rugaib relies solely on a hamburger mega-menu — invisible until clicked, requiring deliberate intent. We are A/B testing adding this section to the homepage in Week 2.</p>
+    </div>
+
+    <div class="spot-grid">
+
+      <!-- BEFORE -->
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:8px">Current site — Control A</div>
+        <div style="background:#EDF0F3;border:1px solid #D0D5DC;padding:2px 2px 0;margin-bottom:10px">
+          <div style="font-size:9px;font-weight:600;text-align:center;color:#555;padding:4px 0;letter-spacing:.04em;text-transform:uppercase;background:#fff;border-bottom:1px solid #D0D5DC">abyat.com · Home Centre · Wayfair</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:2px">
+            <div style="height:52px;background:#C8CDD6;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Living Room</span></div>
+            <div style="height:52px;background:#CDD6C8;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Bedroom</span></div>
+            <div style="height:52px;background:#D6C8C8;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Dining</span></div>
+            <div style="height:52px;background:#D6D2C8;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Outdoor</span></div>
+            <div style="height:52px;background:#C8D0D6;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Office</span></div>
+            <div style="height:52px;background:#D0C8D6;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Accessories</span></div>
+          </div>
+          <div style="font-size:8px;text-align:center;color:#1B5E35;font-weight:600;padding:4px;background:#EDF7F1">Visual grid drives 38–45% of homepage clicks</div>
+        </div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="ph-bar">Free shipping on orders of 1500 SAR and above</div>
+            <div class="ph-nav">
+              <span style="font-size:11px;color:#111">☰</span>
+              <span class="ph-logo">AL RUGAIB</span>
+              <span style="font-size:11px;color:#111">🛒</span>
+            </div>
+            <div class="ph-hero" style="background:#2a2420;justify-content:flex-end">
+              <div class="ph-hero-h" style="margin-bottom:4px">Shop Now</div>
+              <div class="ph-btn-generic">Shop Now</div>
+            </div>
+            <div class="no-grid-ph">
+              <div class="no-grid-label">No category grid —<br>☰ Menu is the only<br>navigation pathway</div>
+            </div>
+            <div class="ph-products">
+              <div class="ph-prod"><div class="ph-prod-img" style="background:#C8CDD6"></div><div class="ph-prod-name">Sofa Set</div><div class="ph-prod-price">SAR 3,290</div></div>
+              <div class="ph-prod"><div class="ph-prod-img" style="background:#D6C8C8"></div><div class="ph-prod-name">Bed Set</div><div class="ph-prod-price">SAR 4,850</div></div>
+              <div class="ph-prod"><div class="ph-prod-img" style="background:#CDD6C8"></div><div class="ph-prod-name">Dining</div><div class="ph-prod-price">SAR 2,190</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;background:var(--danger-bg);border:1px solid #FECACA;padding:10px 12px;font-size:11px;color:var(--danger)">
+          <strong>Problem:</strong> 98.8% of visitors never add to cart. Without a visible category grid, users who don't know exactly what they want — especially social media traffic (2M+ sessions) — have no visual pathway to explore the catalogue.
+        </div>
+      </div>
+
+      <!-- AFTER -->
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:8px">Proposed — Variant B (Test 09)</div>
+        <div style="background:var(--gold-light);border:1px solid var(--gold);padding:2px 2px 0;margin-bottom:10px">
+          <div style="font-size:9px;font-weight:600;text-align:center;color:var(--gold-dim);padding:4px 0;letter-spacing:.04em;text-transform:uppercase;background:#fff;border-bottom:1px solid var(--gold)">Al Rugaib — After implementation</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:2px">
+            <div style="height:52px;background:#C8CDD6;display:flex;align-items:flex-end;padding:4px 5px;position:relative"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Living Room</span><span style="position:absolute;top:2px;right:2px;background:var(--gold);color:#000;font-size:5.5px;font-weight:700;padding:1px 3px">NEW</span></div>
+            <div style="height:52px;background:#CDD6C8;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Bedroom</span></div>
+            <div style="height:52px;background:#D6C8C8;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Dining</span></div>
+            <div style="height:52px;background:#D6D2C8;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Outdoor</span></div>
+            <div style="height:52px;background:#C8D0D6;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Elevarre</span></div>
+            <div style="height:52px;background:#D0C8D6;display:flex;align-items:flex-end;padding:4px 5px"><span style="font-size:7px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)">Lighting</span></div>
+          </div>
+          <div style="font-size:8px;text-align:center;color:var(--gold-dim);font-weight:600;padding:4px;background:var(--gold-light)">Shopify Collection List section · Zero development · 2 hours to deploy</div>
+        </div>
+        <div class="phone-wrap" style="background:#E8E3D5;border:1px solid var(--gold)">
+          <div class="phone" style="border-color:var(--gold-dim)">
+            <div class="ph-bar">Free delivery SAR 1,500+ · Pay in 4 with Tabby</div>
+            <div class="ph-nav">
+              <span style="font-size:11px;color:#111">☰</span>
+              <span class="ph-logo">AL RUGAIB</span>
+              <span style="font-size:11px;color:#111">🛒</span>
+            </div>
+            <div class="ph-hero" style="background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.2) 60%,transparent 100%),#2e2820;height:82px">
+              <div class="ph-hero-tag">Saudi Arabia's trusted brand</div>
+              <div class="ph-hero-h">Premium Furniture Since 1958</div>
+              <div class="ph-btn-intent">Explore Living Room Sets</div>
+            </div>
+            <div class="ph-trust">
+              <div class="ph-trust-item"><span class="ph-trust-icon">🚚</span><span class="ph-trust-lbl">Free Delivery</span></div>
+              <div class="ph-trust-item"><span class="ph-trust-icon">💳</span><span class="ph-trust-lbl">Pay in 4</span></div>
+              <div class="ph-trust-item"><span class="ph-trust-icon">🏠</span><span class="ph-trust-lbl">Design Svc</span></div>
+              <div class="ph-trust-item"><span class="ph-trust-icon">⭐</span><span class="ph-trust-lbl">Since 1958</span></div>
+            </div>
+            <div style="font-family:Playfair Display,serif;font-size:8px;font-weight:600;color:#111;padding:5px 7px 3px;background:#fff">Shop by Room</div>
+            <div class="cat-grid-ph">
+              <div class="cat-tile-ph" style="background:#C8CDD6"><span class="cat-n">Living Room</span></div>
+              <div class="cat-tile-ph" style="background:#CDD6C8"><span class="cat-n">Bedroom</span></div>
+              <div class="cat-tile-ph" style="background:#D6C8C8"><span class="cat-n">Dining</span></div>
+              <div class="cat-tile-ph" style="background:#D6D2C8"><span class="cat-n">Outdoor</span></div>
+              <div class="cat-tile-ph" style="background:#C8D0D6"><span class="cat-n">Elevarre</span></div>
+              <div class="cat-tile-ph" style="background:#D0C8D6"><span class="cat-n">Lighting</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;background:var(--success-bg);border:1px solid #A7F3D0;padding:10px 12px;font-size:11px;color:var(--success)">
+          <strong>Expected outcome:</strong> +30–50% collection page CTR from homepage · -10–15% mobile bounce rate · Benchmark: Abyat's room grid drives 38% of homepage clicks; Home Centre 45%.
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight">
+        <h4 style="color:var(--ink)">How the A/B test works</h4>
+        <p>Variant A (control) keeps the current homepage with mega-menu navigation only. Variant B adds a native Shopify "Collection List" section titled "Shop by Room" in position 3 — below the hero and trust strip. No development required; configured entirely in the Shopify Theme Editor. Test runs 14 days minimum, targeting 95% statistical confidence.</p>
+        <div class="outcome">Primary KPI: Collection page CTR from homepage<br>Secondary: Bounce rate, scroll depth, ATC rate</div>
+      </div>
+      <div class="insight">
+        <h4 style="color:var(--ink)">Why this is our highest-confidence test</h4>
+        <p>Every direct competitor — Home Centre KSA, Abyat, Wayfair — uses a visual category grid. It is the industry standard for furniture e-commerce discovery on mobile. Al Rugaib is the only major KSA furniture retailer without one. The gap is structural, not cosmetic. At 95% mobile traffic with 2M+ social visitors monthly, the absence of visual navigation is directly correlated with our 98.8% no-cart rate.</p>
+        <div class="outcome">Confidence level: 92% · Implementation: 2 hours · Cost: SAR 0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3: ROADMAP TABLE ══ -->
+  <div class="section">
+    <div class="section-label">Section 3 — 4-week execution plan</div>
+
+    <table class="road-table">
+      <thead>
+        <tr>
+          <th style="width:80px">Week</th>
+          <th style="width:120px">Theme</th>
+          <th>Key Tests (8 per week)</th>
+          <th style="width:90px">Impact</th>
+          <th style="width:130px">Tools Used</th>
+          <th style="width:110px">Dev Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="wk-badge wk1">Week 1</span></td>
+          <td style="font-weight:600;font-size:12px">Quick Wins<br><span style="font-weight:400;color:var(--muted)">Text &amp; content only</span></td>
+          <td style="font-size:12px">
+            <strong>T01</strong> Hero value prop headline &amp; brand statement<br>
+            <strong>T02</strong> Hero CTA: room-intent copy vs "Shop Now"<br>
+            <strong>T03</strong> Hextom dynamic "Add SAR X for free delivery" bar<br>
+            <strong>T04</strong> 4-icon trust strip below hero<br>
+            <strong>T05</strong> Tabby/Tamara BNPL announcement bar<br>
+            <strong>T06</strong> FIRST100 welcome offer — new visitors only<br>
+            <strong>T07</strong> Grid &amp; Pixel badges: Best Seller / New Arrival<br>
+            <strong>T08</strong> Announcement bar 3-message rotation
+          </td>
+          <td><span class="impact-pill imp-high">High</span><br><br><div style="font-size:11px;color:var(--muted);margin-top:4px">Target: –8% bounce rate, +0.01% CR</div></td>
+          <td class="tools-list">Hextom Shipping Bar<br>Grid &amp; Pixel<br>Theme Editor</td>
+          <td style="font-size:11px;color:var(--success);font-weight:600">None — Theme Editor only</td>
+        </tr>
+        <tr>
+          <td><span class="wk-badge wk2">Week 2</span></td>
+          <td style="font-weight:600;font-size:12px">Merchandising<br><span style="font-weight:400;color:var(--muted)">Section reorder</span></td>
+          <td style="font-size:12px">
+            <strong>T09</strong> Visual "Shop by Room" category grid ⭐<br>
+            <strong>T10</strong> Category grid order: revenue-ranked vs default<br>
+            <strong>T11</strong> Best sellers section: position 3 vs buried<br>
+            <strong>T12</strong> Elevarre premium brand editorial section<br>
+            <strong>T13</strong> Qeen AI personalized recommendations<br>
+            <strong>T14</strong> Flash sale section + countdown timer<br>
+            <strong>T15</strong> Multi-brand logo showcase section<br>
+            <strong>T16</strong> Mobile grid: 2-column vs 3-column cards
+          </td>
+          <td><span class="impact-pill imp-high">High</span><br><br><div style="font-size:11px;color:var(--muted);margin-top:4px">Target: +30–50% collection CTR, +0.02% CR</div></td>
+          <td class="tools-list">Qeen AI<br>Essential Countdown<br>Theme drag-drop</td>
+          <td style="font-size:11px;color:var(--success);font-weight:600">None — Theme Editor + app configs</td>
+        </tr>
+        <tr>
+          <td><span class="wk-badge wk3">Week 3</span></td>
+          <td style="font-weight:600;font-size:12px">Trust &amp; Proof<br><span style="font-weight:400;color:var(--muted)">Social signals</span></td>
+          <td style="font-size:12px">
+            <strong>T17</strong> Judge.me review badge on homepage<br>
+            <strong>T18</strong> Star ratings on homepage product cards<br>
+            <strong>T19</strong> Brand heritage "Since 1958" module<br>
+            <strong>T20</strong> Design service CTA — dark feature section<br>
+            <strong>T21</strong> Foursixty UGC shoppable gallery<br>
+            <strong>T22</strong> Klaviyo exit-intent popup + SAR 50 offer ⭐
+          </td>
+          <td><span class="impact-pill imp-high">High</span><br><br><div style="font-size:11px;color:var(--muted);margin-top:4px">Target: –12% new visitor bounce, +SAR 1.3M/yr email</div></td>
+          <td class="tools-list">Judge.me<br>Klaviyo<br>Foursixty</td>
+          <td style="font-size:11px;color:var(--success);font-weight:600">None — app widgets + theme sections</td>
+        </tr>
+        <tr>
+          <td><span class="wk-badge wk4">Week 4</span></td>
+          <td style="font-weight:600;font-size:12px">Architecture<br><span style="font-weight:400;color:var(--muted)">Structural UX</span></td>
+          <td style="font-size:12px">
+            <strong>T23</strong> AIDA-ordered homepage section sequence<br>
+            <strong>T24</strong> Hero height: 65vh vs 100vh on mobile<br>
+            <strong>T25</strong> Searchanise full-width search bar<br>
+            <strong>T26</strong> Sticky 5-icon mobile bottom navigation ⭐<br>
+            <strong>T27</strong> Grid &amp; Pixel shoppable room inspiration scene<br>
+            <strong>T28</strong> Wishlist-Wishify prominence + email on save<br>
+            <strong>T29</strong> BEAST currency auto-detect for UAE visitors<br>
+            <strong>T30</strong> Sticky Add-to-Cart bar on mobile product pages ⭐
+          </td>
+          <td><span class="impact-pill imp-high">Critical</span><br><br><div style="font-size:11px;color:var(--muted);margin-top:4px">Target: +25% mobile ATC, +SAR 1.37M/period</div></td>
+          <td class="tools-list">Wayfinder<br>Searchanise<br>BEAST Currency</td>
+          <td style="font-size:11px;color:var(--warn);font-weight:600">Light — T26 &amp; T30 may need dev if apps insufficient</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px">
+      <div style="background:var(--white);border:1px solid var(--border);padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Statistical standard</div>
+        <div style="font-size:13px;font-weight:600">95% confidence · 14-day min run · 1,000 conversions/variant before declaring winner</div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Measurement tools</div>
+        <div style="font-size:13px;font-weight:600">GA4 (daily) · Shopify Analytics (daily) · Browsly heatmaps (bi-weekly) · Klaviyo flows (weekly)</div>
+      </div>
+      <div style="background:var(--success-bg);border:1px solid #A7F3D0;padding:14px 16px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--success);margin-bottom:6px">Conservative 90-day upside</div>
+        <div style="font-size:20px;font-weight:700;color:var(--success);font-family:'Playfair Display',serif">+SAR 6.6M/year</div>
+        <div style="font-size:11px;color:var(--success);margin-top:2px">If CR recovers from 0.08% → 0.12% at current traffic</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p><strong>Al Rugaib Furniture</strong> · CRO Executive Dashboard · June 2026</p>
+  <p>Full 30-test roadmap with implementation specs available separately · Prepared by Senior CRO Director</p>
+</footer>
+
+</body>
+</html>
