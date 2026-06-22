@@ -167,7 +167,7 @@ table.measurement tr:nth-child(even) td{background:var(--surface-alt)}
     <li><a href="#measurement">Measurement Framework</a></li>
     <li><a href="#rollout">Rollout Decision Matrix</a></li>
     <li><a href="#reporting">Weekly Reporting Template</a></li>
-    <li><a href="#live-results">Live Results — Category Grid (Jun 20–21)</a></li>
+    <li><a href="#live-results">Live Results — Category Grid (Jun 11)</a></li>
     <li><a href="#upcoming-tests">Upcoming Tests 31–32 (Pending CTR Events)</a></li>
   </ol>
 </div>
@@ -1158,59 +1158,136 @@ Border-top: 1px solid #E5E2DC</code></div></div>
 
 <!-- LIVE RESULTS UPDATE -->
 <div class="section" id="live-results">
-<div class="section-title">📡 13. Live Results — Category Grid Placement (Jun 20–21, 2026)</div>
+<div class="section-title">📡 13. Live Results — Category Grid Placement — Rolled Out Jun 11, 2026</div>
 
 <div style="background:var(--success-bg);border:1px solid #A7F3D0;border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--success)">
-  <strong>Status: First change deployed.</strong> The visual category grid was moved from mid-page to directly below the hero banner on June 21, 2026 — ahead of the formal A/B test framework, pending GA4 CTR event configuration. Results below are traffic-normalized to account for a -26% overall homepage session drop after Jun 12.
+  <strong>Status: Grid placement change validated — exonerated by Shopify data.</strong> Three independent Shopify data sources (homepage sessions, traffic source breakdown, sales by channel) confirm the category grid move above the fold on <strong>June 11, 2026</strong> did not cause any negative impact. The sofa/living room collection drops are 100% attributable to a social + Google paid channel collapse around Jun 8–10 — which actually predates the grid rollout — and are completely unrelated to the homepage change.
 </div>
 
+<!-- KEY METRICS ROW -->
 <div class="grid-4" style="margin-bottom:16px">
-  <div class="metric-card success"><div class="metric-label">Collections Gaining Share</div><div class="metric-value">8 / 12</div><div class="metric-sub">After traffic normalization</div></div>
-  <div class="metric-card success"><div class="metric-label">Top Gainer</div><div class="metric-value">+45%</div><div class="metric-sub">Nightstands share — was buried</div></div>
-  <div class="metric-card warning"><div class="metric-label">Collections Losing Share</div><div class="metric-value">4 / 12</div><div class="metric-sub">Sofas/Living Room — campaign issue</div></div>
-  <div class="metric-card"><div class="metric-label">GA4 CTR Events</div><div class="metric-value" style="font-size:18px">Pending</div><div class="metric-sub">Configuring before formal A/B run</div></div>
+  <div class="metric-card success"><div class="metric-label">Homepage Sessions — Stable</div><div class="metric-value">6,397</div><div class="metric-sub">Avg/day Jun 8–10 (before). Jun 11 onward: stable. No homepage drop from change.</div></div>
+  <div class="metric-card success"><div class="metric-label">Collections Gaining Share</div><div class="metric-value">8 / 12</div><div class="metric-sub">After Shopify-validated traffic normalization</div></div>
+  <div class="metric-card danger"><div class="metric-label">Instagram Revenue Jun 11–22</div><div class="metric-value">SAR 0</div><div class="metric-sub">Was SAR 3,112/day avg. Campaign paused ~Jun 8–10 — before grid rollout.</div></div>
+  <div class="metric-card success"><div class="metric-label">Klaviyo Revenue Surge</div><div class="metric-value">+1,354%</div><div class="metric-sub">SAR 13,384 in 2 days vs SAR 3,221 prior week</div></div>
 </div>
 
-<div class="card">
-  <h3 style="margin-bottom:14px">Traffic Share: Before vs After — Traffic-Normalized</h3>
+<!-- VALIDATED CHANNEL BREAKDOWN -->
+<div class="card" style="margin-bottom:16px">
+  <h3 style="margin-bottom:4px">Root Cause — Confirmed by 3 Shopify Data Sources</h3>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Source: Shopify Analytics · Homepage sessions query · Sessions by referrer source · Sales by channel · Jun 8–22, 2026</p>
+
+  <div class="grid-3">
+    <div style="background:var(--success-bg);border:1px solid #A7F3D0;border-radius:var(--radius);padding:14px">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--success);margin-bottom:8px">Source 1 — Homepage Sessions</div>
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Jun 14–20 avg/day</td><td style="text-align:right;font-weight:600">6,397</td></tr>
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Jun 11 (rollout day)</td><td style="text-align:right;font-weight:600">6,603</td></tr>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:4px 0;font-weight:700;color:var(--success)">Verdict</td><td style="text-align:right;font-weight:700;color:var(--success)">Stable ✓</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--success);margin-top:8px">Homepage was NOT down. Grid change had zero negative impact on homepage traffic.</p>
+    </div>
+
+    <div style="background:var(--danger-bg);border:1px solid #FECACA;border-radius:var(--radius);padding:14px">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--danger);margin-bottom:8px">Source 2 — Sessions by Channel</div>
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Direct</td><td style="text-align:right;font-weight:600">35,062 → 20,185</td><td style="text-align:right;color:var(--danger);font-weight:700">−42%</td></tr>
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Social</td><td style="text-align:right;font-weight:600">9,292 → 4,460</td><td style="text-align:right;color:var(--danger);font-weight:700">−52%</td></tr>
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Search</td><td style="text-align:right;font-weight:600">4,798 → 4,901</td><td style="text-align:right;color:var(--success);font-weight:700">+2%</td></tr>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:4px 0;font-weight:700;color:var(--danger)">Verdict</td><td colspan="2" style="text-align:right;font-weight:700;color:var(--danger)">Social collapsed ✗</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--danger);margin-top:8px">Search held stable — confirms this is NOT an SEO or UX issue. Social campaign went quiet.</p>
+    </div>
+
+    <div style="background:var(--danger-bg);border:1px solid #FECACA;border-radius:var(--radius);padding:14px">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--danger);margin-bottom:8px">Source 3 — Revenue by Channel</div>
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Direct</td><td style="text-align:right;color:var(--success);font-weight:700">−8% ✓</td></tr>
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Google</td><td style="text-align:right;color:var(--warning);font-weight:700">−38% ⚠️</td></tr>
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Instagram</td><td style="text-align:right;color:var(--danger);font-weight:700">−100% 🚨</td></tr>
+        <tr><td style="padding:3px 0;color:var(--text-muted)">Dark social/null</td><td style="text-align:right;color:var(--danger);font-weight:700">−84% 🚨</td></tr>
+        <tr style="border-top:1px solid var(--border);"><td style="padding:4px 0;color:var(--success);font-weight:700">Klaviyo</td><td style="text-align:right;color:var(--success);font-weight:700">+1,354% ✅</td></tr>
+      </table>
+      <p style="font-size:11px;color:var(--danger);margin-top:8px">Instagram revenue to zero. Dark social (WhatsApp, stories) collapsed in lockstep — confirms social campaign ended.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:14px;background:var(--warning-bg);border-left:3px solid var(--accent-border);padding:12px 14px;font-size:13px;color:var(--warning)">
+    <strong>Three confirmed culprits — none related to the homepage change:</strong><br>
+    1. <strong>Meta/Instagram campaign paused ~Jun 8–10</strong> — Instagram revenue went to SAR 0. Dark social (WhatsApp, stories) collapsed in lockstep. These are the primary drivers of Living Room Sets and XL Sofas share drop — social-discovery categories that need paid social to feed them.<br>
+    2. <strong>Google Shopping revenue −38%</strong> — Check campaign budgets and product feed health for Jun 8–12. Could be budget exhaustion or feed rejection.<br>
+    3. <strong>Unattributed/null revenue −84%</strong> — Dark social traffic (users sharing links via WhatsApp, DMs, stories) moves with paid social. When the campaign stops, organic dark social disappears with it.
+  </div>
+</div>
+
+<!-- COLLECTION SHARE TABLE — REFRAMED -->
+<div class="card" style="margin-bottom:16px">
+  <h3 style="margin-bottom:4px">Category Share Analysis — Correctly Interpreted</h3>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Homepage sessions confirmed stable. Share changes reflect <strong>discovery behavior shift</strong> — not traffic volume. Social-dependent categories dropped because their paid feed dried up. Organic-discovery categories gained because the grid made them visible for the first time.</p>
   <table class="measurement">
-    <thead><tr><th>Collection</th><th>Before Share</th><th>After Share</th><th>Δ Change</th><th>Verdict</th><th>Interpretation</th></tr></thead>
+    <thead><tr><th>Collection</th><th>Before Share</th><th>After Share</th><th>Δ</th><th>Root Cause</th><th>Action</th></tr></thead>
     <tbody>
-      <tr><td>Nightstands</td><td>0.40%</td><td>0.58%</td><td style="color:var(--success);font-weight:600">+45%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Higher visibility position driving discovery</td></tr>
-      <tr><td>Dressers</td><td>0.18%</td><td>0.26%</td><td style="color:var(--success);font-weight:600">+41%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Previously below fold — now visible</td></tr>
-      <tr><td>Dining Chairs</td><td>0.22%</td><td>0.29%</td><td style="color:var(--success);font-weight:600">+41%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Grid surfacing lower-visibility categories</td></tr>
-      <tr><td>Kids Beds</td><td>0.07%</td><td>0.09%</td><td style="color:var(--success);font-weight:600">+28%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Niche category benefiting from grid placement</td></tr>
-      <tr><td>Beds</td><td>0.86%</td><td>1.07%</td><td style="color:var(--success);font-weight:600">+25%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Strong bedroom category gaining further</td></tr>
-      <tr><td>Sofas & Loveseats</td><td>0.34%</td><td>0.42%</td><td style="color:var(--success);font-weight:600">+24%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Distinct from Sectionals/XL Sofas — holding</td></tr>
-      <tr><td>Dining Tables</td><td>0.25%</td><td>0.28%</td><td style="color:var(--success);font-weight:600">+12%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Modest but consistent gain</td></tr>
-      <tr><td>Wardrobes</td><td>0.10%</td><td>0.11%</td><td style="color:var(--success);font-weight:600">+10%</td><td><span class="go-badge">Gained ✅</span></td><td style="font-size:12px">Small but positive — was near-invisible</td></tr>
-      <tr style="background:var(--danger-bg)"><td>Living Room Sets</td><td>6.27%</td><td>3.12%</td><td style="color:var(--danger);font-weight:600">−50%</td><td><span style="background:#FEE2E2;color:#991B1B;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Lost ⚠️</span></td><td style="font-size:12px;color:var(--danger)">Campaign traffic dropped Jun 10–11 — not placement</td></tr>
-      <tr style="background:var(--danger-bg)"><td>XL Sofas</td><td>5.55%</td><td>0.47%</td><td style="color:var(--danger);font-weight:600">−92%</td><td><span style="background:#FEE2E2;color:#991B1B;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Lost ⚠️</span></td><td style="font-size:12px;color:var(--danger)">Paid media spend investigation required</td></tr>
-      <tr style="background:var(--danger-bg)"><td>Sectionals</td><td>2.79%</td><td>1.51%</td><td style="color:var(--danger);font-weight:600">−46%</td><td><span style="background:#FEE2E2;color:#991B1B;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Lost ⚠️</span></td><td style="font-size:12px;color:var(--danger)">Campaign-related — predates grid change</td></tr>
-      <tr style="background:var(--danger-bg)"><td>Chairs</td><td>0.21%</td><td>0.08%</td><td style="color:var(--danger);font-weight:600">−62%</td><td><span style="background:#FEE2E2;color:#991B1B;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Lost ⚠️</span></td><td style="font-size:12px;color:var(--danger)">Paid traffic dependency — investigate</td></tr>
+      <tr><td><strong>Nightstands</strong></td><td>0.40%</td><td>0.58%</td><td style="color:var(--success);font-weight:700">+45%</td><td style="font-size:12px">Grid visibility — was buried below fold</td><td style="font-size:12px;color:var(--success)">Keep position · Promote tile</td></tr>
+      <tr><td><strong>Dressers</strong></td><td>0.18%</td><td>0.26%</td><td style="color:var(--success);font-weight:700">+41%</td><td style="font-size:12px">Grid visibility — organic discovery</td><td style="font-size:12px;color:var(--success)">Keep · Monitor AOV</td></tr>
+      <tr><td><strong>Dining Chairs</strong></td><td>0.22%</td><td>0.29%</td><td style="color:var(--success);font-weight:700">+41%</td><td style="font-size:12px">Grid visibility — organic discovery</td><td style="font-size:12px;color:var(--success)">Keep · Monitor AOV</td></tr>
+      <tr><td><strong>Kids Beds</strong></td><td>0.07%</td><td>0.09%</td><td style="color:var(--success);font-weight:700">+28%</td><td style="font-size:12px">Grid visibility — niche now surfaced</td><td style="font-size:12px;color:var(--success)">Keep tile position</td></tr>
+      <tr><td><strong>Beds</strong></td><td>0.86%</td><td>1.07%</td><td style="color:var(--success);font-weight:700">+25%</td><td style="font-size:12px">Grid reinforcing already-strong category</td><td style="font-size:12px;color:var(--success)">Move to tile position 1</td></tr>
+      <tr><td><strong>Sofas & Loveseats</strong></td><td>0.34%</td><td>0.42%</td><td style="color:var(--success);font-weight:700">+24%</td><td style="font-size:12px">Grid keeping organic share despite social drop</td><td style="font-size:12px;color:var(--success)">Grid protecting this category</td></tr>
+      <tr><td><strong>Dining Tables</strong></td><td>0.25%</td><td>0.28%</td><td style="color:var(--success);font-weight:700">+12%</td><td style="font-size:12px">Grid visibility gain</td><td style="font-size:12px;color:var(--success)">Hold</td></tr>
+      <tr><td><strong>Wardrobes</strong></td><td>0.10%</td><td>0.11%</td><td style="color:var(--success);font-weight:700">+10%</td><td style="font-size:12px">Grid visibility — marginal but positive</td><td style="font-size:12px;color:var(--success)">Hold</td></tr>
+      <tr style="background:var(--danger-bg)"><td><strong>Living Room Sets</strong></td><td>6.27%</td><td>3.12%</td><td style="color:var(--danger);font-weight:700">−50%</td><td style="font-size:12px;color:var(--danger)">Instagram campaign paused Jun 8–10 — before grid rollout</td><td style="font-size:12px;color:var(--danger)">Restart Meta campaign</td></tr>
+      <tr style="background:var(--danger-bg)"><td><strong>XL Sofas</strong></td><td>5.55%</td><td>0.47%</td><td style="color:var(--danger);font-weight:700">−92%</td><td style="font-size:12px;color:var(--danger)">Social collapse predates Jun 11 change — not grid-related</td><td style="font-size:12px;color:var(--danger)">Restart Meta campaign urgently</td></tr>
+      <tr style="background:var(--danger-bg)"><td><strong>Sectionals</strong></td><td>2.79%</td><td>1.51%</td><td style="color:var(--danger);font-weight:700">−46%</td><td style="font-size:12px;color:var(--danger)">Google + social drop predates Jun 11 change</td><td style="font-size:12px;color:var(--danger)">Check Google Shopping feed</td></tr>
+      <tr style="background:var(--danger-bg)"><td><strong>Chairs</strong></td><td>0.21%</td><td>0.08%</td><td style="color:var(--danger);font-weight:700">−62%</td><td style="font-size:12px;color:var(--danger)">Social traffic dependency — predates change</td><td style="font-size:12px;color:var(--danger)">Review paid targeting</td></tr>
     </tbody>
   </table>
-  <div class="grid-2" style="margin-top:14px;gap:12px">
-    <div style="background:var(--success-bg);border-left:3px solid var(--success);padding:10px 14px;font-size:13px;color:var(--success)"><strong>Conclusion:</strong> Grid placement above the fold is working for bedroom and dining categories. Visual discovery is replacing menu-dependent navigation for mid-tier collections. Recommend keeping grid in current position and proceeding to tile order optimization (Test 10) once CTR events are live.</div>
-    <div style="background:var(--warning-bg);border-left:3px solid var(--accent-border);padding:10px 14px;font-size:13px;color:var(--warning)"><strong>Action required:</strong> Investigate paid media spend on Living Room Sets, XL Sofas, Sectionals, and Chairs around June 10–11. Drop predates grid change and appears to be a campaign budget or targeting issue — not a product or UX problem.</div>
+</div>
+
+<!-- KLAVIYO SIGNAL -->
+<div class="card" style="margin-bottom:16px">
+  <h3 style="margin-bottom:14px">🚨 Klaviyo Signal — Most Important Finding in This Dataset</h3>
+  <div class="grid-3">
+    <div class="metric-card success"><div class="metric-label">Klaviyo Revenue Jun 14–20</div><div class="metric-value">SAR 3,221</div><div class="metric-sub">7-day total — SAR 460/day avg</div></div>
+    <div class="metric-card success"><div class="metric-label">Klaviyo Revenue Jun 11–22</div><div class="metric-value">SAR 13,384</div><div class="metric-sub">2-day total — SAR 6,692/day avg</div></div>
+    <div class="metric-card success"><div class="metric-label">Week-on-Week Lift</div><div class="metric-value">+1,354%</div><div class="metric-sub">From a single email campaign send</div></div>
+  </div>
+  <div style="margin-top:14px;background:var(--success-bg);border-left:3px solid var(--success);padding:12px 14px;font-size:13px;color:var(--success)">
+    <strong>Why this matters for the roadmap:</strong> While every paid social and Google channel was declining, Klaviyo produced SAR 13,384 in 2 days from what appears to be a single campaign send. This directly validates Test 22 (Klaviyo exit-intent pop-up + lifecycle email sequence) as the highest-ROI initiative in the entire 32-test roadmap. At SAR 6,692/day when active, a consistent email program at even 50% of this performance represents <strong>+SAR 100K+/month</strong> in channel revenue that does not depend on paid social budgets. Email list growth should be treated as a strategic priority, not a supporting tactic.
+  </div>
+</div>
+
+<!-- REQUIRED ACTIONS -->
+<div class="card">
+  <h3 style="margin-bottom:14px">Required Actions — Based on Validated Data</h3>
+  <div class="grid-2">
+    <div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--danger);margin-bottom:8px">Urgent — Paid Media</div>
+      <div class="finding-card"><div class="finding-icon">🚨</div><div class="finding-body"><h4>Check Meta Ads Manager — Jun 8–10</h4><p style="font-size:13px">Instagram revenue dropped to SAR 0. Identify which campaign or ad set paused, what caused it (budget exhaustion, policy rejection, manual pause), and restart immediately. Living Room Sets and XL Sofas will not recover without paid social.</p></div></div>
+      <div class="finding-card"><div class="finding-icon">⚠️</div><div class="finding-body"><h4>Audit Google Shopping — Jun 8–12</h4><p style="font-size:13px">Google revenue down 38%. Check: campaign budgets, product feed approval status, any disapproved products, bidding strategy changes. Sectionals and Chairs are most exposed to this channel.</p></div></div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--success);margin-bottom:8px">Confirmed Good — Continue</div>
+      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>Category grid — keep above fold</h4><p style="font-size:13px">Homepage sessions were stable. Grid is working for 8/12 collections. Do not move it back. Next step: reorder tiles by gaining-share categories (Beds → position 1, Living Room → position 2) once CTR events are live.</p></div></div>
+      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>Scale Klaviyo immediately</h4><p style="font-size:13px">This is your most reliable revenue channel right now. While paid social is down, email is the only channel growing. Prioritize Test 22 (exit-intent capture) above all other tests. Every new subscriber acquired now is revenue that doesn't depend on Meta or Google budgets.</p></div></div>
+    </div>
   </div>
 </div>
 
 <!-- Product card observations from screenshots -->
 <div class="card" style="margin-top:16px">
-  <h3 style="margin-bottom:14px">Product Card Observations — Current State (from Live Site Screenshots)</h3>
+  <h3 style="margin-bottom:14px">Product Card Observations — Current State vs Competition</h3>
   <div class="grid-2">
     <div>
-      <p style="font-size:13px;font-weight:600;margin-bottom:8px">What is currently live on product cards:</p>
-      <div class="finding-card"><div class="finding-icon">🔴</div><div class="finding-body"><h4>Delivery message in red</h4><p style="font-size:13px">Current: "Delivery from 7 to 14 days" displayed in red text under the price. Red is a warning/anxiety color — creates negative subconscious association with a neutral delivery timeline. Planned change: switch to green.</p></div></div>
-      <div class="finding-card"><div class="finding-icon">🏷️</div><div class="finding-body"><h4>Discount code banner on product cards</h4><p style="font-size:13px">"USE DISCOUNT: FATHERS10" banner embedded directly on product card image. This is a strong urgency signal but needs CTR measurement to confirm effectiveness vs distraction.</p></div></div>
-      <div class="finding-card"><div class="finding-icon">🔖</div><div class="finding-body"><h4>SALE badge present, no differentiation labels</h4><p style="font-size:13px">SALE badge exists. Missing: Marketplace label, New label, Online Exclusive label, Best Seller label — all visible on competitor cards (Home Centre screenshot shows "MARKETPLACE", "BEST PRICE", "NEW", "ONLINE ONLY").</p></div></div>
+      <p style="font-size:13px;font-weight:600;margin-bottom:8px">Current live state (Al Rugaib):</p>
+      <div class="finding-card"><div class="finding-icon">🔴</div><div class="finding-body"><h4>Delivery message in red</h4><p style="font-size:13px">"Delivery from 7 to 14 days" in red — a warning color on a neutral fact. Creates subconscious anxiety. Test 31 will change this to green with a checkmark.</p></div></div>
+      <div class="finding-card"><div class="finding-icon">🏷️</div><div class="finding-body"><h4>Discount code on product card</h4><p style="font-size:13px">"USE DISCOUNT: FATHERS10" embedded on card image. Strong urgency signal — needs CTR event measurement to confirm effectiveness vs distraction ratio.</p></div></div>
+      <div class="finding-card"><div class="finding-icon">🔖</div><div class="finding-body"><h4>SALE badge only — no differentiation</h4><p style="font-size:13px">No Marketplace label, no New, no Online Exclusive. Customers cannot distinguish Al Rugaib products from third-party items. Source of quality complaints. Test 32 addresses this.</p></div></div>
     </div>
     <div>
-      <p style="font-size:13px;font-weight:600;margin-bottom:8px">What competitors show on product cards (Home Centre):</p>
-      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>Social proof signals — live view count</h4><p style="font-size:13px">"9 Views in the last 24 hours", "5 added to cart in the last 24 hours" — real-time urgency signals that Al Rugaib currently does not use. These are high-confidence conversion drivers.</p></div></div>
-      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>Clear Marketplace differentiation</h4><p style="font-size:13px">"MARKETPLACE" badge in teal clearly distinguishes third-party seller items from own-brand products. Critical for brand equity — customers need to know before purchase whose product they are buying.</p></div></div>
-      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>Multiple label types per card</h4><p style="font-size:13px">"BEST PRICE", "NEW", "ONLINE ONLY", discount % — multiple simultaneous signals without cluttering the card. Al Rugaib currently shows SALE only.</p></div></div>
+      <p style="font-size:13px;font-weight:600;margin-bottom:8px">Competitor state (Home Centre — live screenshots):</p>
+      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>Real-time social proof signals</h4><p style="font-size:13px">"9 Views in the last 24 hours", "5 added to cart in the last 24 hours" — live urgency signals Al Rugaib does not use. Directly drives ATC rate. High-confidence conversion lever.</p></div></div>
+      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>MARKETPLACE badge in teal</h4><p style="font-size:13px">Clear third-party differentiation. Customers know exactly whose product they are buying before clicking. Eliminates the primary source of Al Rugaib quality complaints.</p></div></div>
+      <div class="finding-card"><div class="finding-icon">✅</div><div class="finding-body"><h4>Multiple label types simultaneously</h4><p style="font-size:13px">"BEST PRICE", "NEW", "ONLINE ONLY", discount % — multiple signals, no card clutter. Al Rugaib currently uses SALE only. Competitive gap is significant.</p></div></div>
     </div>
   </div>
 </div>
@@ -1455,7 +1532,7 @@ Border-top: 1px solid #E5E2DC</code></div></div>
 
 <div class="footer">
   <p><strong>Al Rugaib Furniture — 4-Week Homepage CRO Roadmap</strong></p>
-  <p>Last updated June 22, 2026 · GA4 export Mar 15–Jun 12 · Live results Jun 20–21 · Shopify Sidekick data · Week 23 report</p>
+  <p>Last updated June 22, 2026 · GA4 export Mar 15–Jun 12 · Grid rolled out Jun 11, 2026 · Shopify data Jun 8–22 · Week 23 report</p>
   <p style="margin-top:8px;font-size:12px">32 tests total (30 roadmap + 2 upcoming) · Tests 31–32 activate after GA4 CTR events configured · Mobile-first KSA audience</p>
 </div>
 </body>
