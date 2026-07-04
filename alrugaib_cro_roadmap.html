@@ -1247,8 +1247,33 @@ Border-top: 1px solid #E5E2DC</code></div></div>
 
 <!-- LIVE RESULTS UPDATE -->
 <div class="section tab-panel" id="live-results">
-<div class="section-title">📡 13. Live Results — Category Grid Placement — Rolled Out Jun 11, 2026</div>
-<div class="last-refreshed">Last refreshed: Jun 22, 2026</div>
+<div class="section-title">📡 13. Live Results — Category Grid Placement, Rolled Out Jun 11, 2026 (Ongoing — No Changes Since)</div>
+<div class="last-refreshed">Last refreshed: Jun 22, 2026 (original analysis below) · Updated Jul 4, 2026 with cumulative Jun 11–Jul 4 numbers (grid unchanged since rollout)</div>
+
+<div class="card" style="margin-bottom:16px;border-color:var(--accent-border)">
+  <h3 style="margin-bottom:10px">Cumulative Since Grid Rollout — Jun 11–Jul 4, 2026 (24 days, no grid changes made in this window)</h3>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Pulled live via Shopify ShopifyQL, Jul 4, 2026. This is a full-window view of everything since the grid went live — not a snapshot like the Jun 22 analysis below, which only covered the first 11 days.</p>
+  <div class="grid-4" style="margin-bottom:14px">
+    <div class="metric-card"><div class="metric-label">Sessions</div><div class="metric-value">1,400,413</div><div class="metric-sub">~58,350/day avg</div></div>
+    <div class="metric-card"><div class="metric-label">Orders</div><div class="metric-value">1,378</div><div class="metric-sub">CR: 0.098% (orders/sessions)</div></div>
+    <div class="metric-card"><div class="metric-label">Total Sales</div><div class="metric-value">SAR 2.85M</div><div class="metric-sub">AOV: SAR 2,066</div></div>
+    <div class="metric-card"><div class="metric-label">Online Store Visitors</div><div class="metric-value">1,154,706</div><div class="metric-sub">~82% of sessions are unique visitors</div></div>
+  </div>
+  <table class="measurement">
+    <thead><tr><th>Referrer source</th><th>Sessions</th><th>Share</th></tr></thead>
+    <tbody>
+      <tr><td>Direct</td><td>872,489</td><td>62.3%</td></tr>
+      <tr><td>Social</td><td>406,030</td><td>29.0%</td></tr>
+      <tr><td>Search</td><td>106,534</td><td>7.6%</td></tr>
+      <tr><td>Unknown</td><td>15,137</td><td>1.1%</td></tr>
+      <tr><td>Email</td><td>117</td><td>&lt;0.1%</td></tr>
+      <tr><td>Paid</td><td>70</td><td>&lt;0.1%</td></tr>
+      <tr><td>Invalid</td><td>36</td><td>&lt;0.1%</td></tr>
+    </tbody>
+  </table>
+  <div class="corrected" style="margin-top:12px">📌 Important caveat: ShopifyQL's <code>referrer_source</code> dimension buckets traffic more coarsely (direct/social/search/email/paid/unknown/invalid) than the original Jun 22 analysis below, which used Shopify's admin "Sessions by referrer" report with finer categories (Direct, Paid Social, Organic Social, Google CPC, Google Organic, etc.). The "Social" bucket here (406,030 sessions, 29.0%) combines organic and paid social together, and the "Paid" bucket (70 sessions) does not appear to correspond to what the original analysis called "Paid Social." I cannot directly reconcile these two classification schemes from what I have, so I'm not claiming this new pull confirms or contradicts the original "Instagram campaign paused" finding below — it's presented as new, independently-sourced data on its own terms, not a continuation of the same category breakdown.</div>
+  <div class="corrected" style="margin-top:8px">📌 The 0.098% CR and SAR 2,066 AOV for this specific 24-day window are both somewhat lower than the full Jan 1–Jul 4 period figures reported elsewhere in this document (CR 0.143%, AOV SAR 2,530) — a 24-day window will naturally be noisier than a 6-month one; this is not necessarily a trend, just a shorter, more volatile sample.</div>
+</div>
 
 <div style="background:var(--success-bg);border:1px solid #A7F3D0;border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--success)">
   <strong>Status: Grid placement change validated — exonerated by Shopify data.</strong> Three independent Shopify data sources (homepage sessions, traffic source breakdown, sales by channel) confirm the category grid move above the fold on <strong>June 11, 2026</strong> did not cause any negative impact. The sofa/living room collection drops are 100% attributable to a social + Google paid channel collapse around Jun 8–10 — which actually predates the grid rollout — and are completely unrelated to the homepage change.
@@ -1863,8 +1888,8 @@ Border-top: 1px solid #E5E2DC</code></div></div>
 
   <div class="card" style="background:var(--accent-light);border-color:var(--accent-border)">
     <h3 style="margin-bottom:10px">Full SEO Tool</h3>
-    <p style="font-size:13px;margin-bottom:12px">Per-SKU priority lists, search/filter, CSV export, and the team check-in tracker live in a separate file (kept separate because it's a React app, not vanilla JS/HTML like this roadmap — see the earlier discussion on why these don't share one file).</p>
-    <a href="al-rugaib-seo-dashboard.html" target="_blank" style="display:inline-block;background:var(--primary);color:#fff;padding:10px 20px;border-radius:var(--radius);text-decoration:none;font-weight:600;font-size:13px">Open Full SEO Dashboard →</a>
+    <p style="font-size:13px;margin-bottom:12px">Per-SKU priority lists, search/filter, CSV export, and the team check-in tracker live in a separate hosted tool (kept separate because it's a React app, not vanilla JS/HTML like this roadmap — see the earlier discussion on why these don't share one file). Hosted at: <code style="font-size:11px">haithamhassan-alrugaib.github.io/CRO_SEO/alrugaib_seo_tracker.html</code></p>
+    <a href="https://haithamhassan-alrugaib.github.io/CRO_SEO/alrugaib_seo_tracker.html" target="_blank" style="display:inline-block;background:var(--primary);color:#fff;padding:10px 20px;border-radius:var(--radius);text-decoration:none;font-weight:600;font-size:13px">Open Full SEO Dashboard →</a>
   </div>
 </div>
 
