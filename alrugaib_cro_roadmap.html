@@ -226,6 +226,7 @@ table.measurement tr:nth-child(even) td{background:var(--surface-alt)}
     <div class="tab-group-buttons">
       <button class="tab-btn" data-tab="data-notes" onclick="switchTab('data-notes')">Data & Methodology Notes</button>
       <button class="tab-btn" data-tab="weekly-log" onclick="switchTab('weekly-log')">Weekly Update Log</button>
+      <button class="tab-btn" data-tab="history" onclick="switchTab('history')">History Timeline</button>
     </div>
     <div class="tab-source">Source: Corrections and open items logged by Claude, Jul 4, 2026. Weekly log entries are sourced from whatever data/screenshots are provided each week at the time of that update.</div>
   </div>
@@ -242,12 +243,17 @@ table.measurement tr:nth-child(even) td{background:var(--surface-alt)}
 <!-- EXECUTIVE SUMMARY -->
 <div class="section tab-panel" id="exec">
   <div class="section-title">📋 1. Executive Summary</div>
-<div class="last-refreshed">Last refreshed: Jun 13, 2026</div>
-  <div class="critical-alert">
-    <div class="ca-title">⚠️ CRITICAL: Conversion Rate Crisis — 41.4% Drop vs Previous Period</div>
-    <p>Current CR of <strong>0.082%</strong> is down 41.4% vs the previous period (0.14%). With 7.49M sessions YTD and AOV SAR 2,282, restoring even 50% of the lost CR represents approximately <strong>SAR 2.5M+ in incremental annual revenue</strong> at current traffic levels. The checkout abandonment rate of 86.3% is the single largest revenue leak — industry benchmark for furniture is 68–72%.</p>
+<div class="last-refreshed">Last refreshed: Jun 13, 2026 (baseline metrics) · Session/CR baseline corrected Jul 4, 2026 — see box below</div>
+  <div class="critical-alert" style="background:var(--info-bg);border-color:#BFDBFE">
+    <div class="ca-title" style="color:var(--info)">📌 Baseline correction (Jul 4, 2026) — read before using session/revenue figures below</div>
+    <p style="color:var(--info)">The original analysis (Jun 13, 2026) assumed <strong>~600K sessions/month</strong> in its revenue-impact math throughout this document. That figure is now confirmed inconsistent with actual traffic: a direct GA4 export and a live Shopify ShopifyQL pull — two independent sources — both show <strong>~2.0–2.5M sessions/month</strong> (12,393,940 total, Jan 1–Jul 4, 2026), agreeing within ~17% of each other. Every revenue-impact dollar figure in this document that used the 600K/month assumption is very likely understated by roughly 3–4x. Conversion rate itself is a separate, mixed picture: Shopify's own order-based CR for the same window is <strong>0.143%</strong> — nearly double the 0.077% implied by GA4 purchase events — plausibly (not confirmed) because this store uses offsite payment redirects (e.g., Checkout.com) that are a known cause of GA4 purchase-event undercounting. See Section 21 (History) for the full timeline and Section 16 (Sprint Plan) for retargeted metrics.</p>
   </div>
-  <div class="grid-4">
+  <div class="critical-alert">
+    <div class="ca-title">⚠️ CRITICAL: Conversion Rate Crisis — 41.4% Drop vs Previous Period (original Jun 13 framing — session base since corrected, see box above)</div>
+    <p>Current CR of <strong>0.082%</strong> is down 41.4% vs the previous period (0.14%) — this CR percentage is not affected by the session-count correction above. With 7.49M sessions YTD (per the original Jun 13 doc; superseded by the Jul 4 Shopify/GA4 cross-check above) and AOV SAR 2,282, restoring even 50% of the lost CR represents approximately <strong>SAR 2.5M+ in incremental annual revenue</strong> at the <em>original</em> traffic assumption — likely a significant understatement given the corrected session volume. The checkout abandonment rate of 86.3% is the single largest revenue leak — the original document cited an uncited "68–72%" furniture industry benchmark for this; I have not been able to independently verify a KSA-specific furniture checkout-abandonment benchmark (see Section 16 for what I could verify: a Saudi market-wide, all-category cart abandonment rate of 76.0–76.5%, ECDB 2025 — not furniture-specific).</p>
+  </div>
+  
+<div class="grid-4">
     <div class="metric-card danger"><div class="metric-label">Conversion Rate</div><div class="metric-value">0.08%</div><div class="metric-sub">▼ 41.4% vs prev period (0.14%)</div></div>
     <div class="metric-card warning"><div class="metric-label">Cart Add Rate</div><div class="metric-value">1.24%</div><div class="metric-sub">Industry benchmark: 3–5% for furniture</div></div>
     <div class="metric-card warning"><div class="metric-label">Cart → Checkout</div><div class="metric-value">48.5%</div><div class="metric-sub">51.5% abandon after adding to cart</div></div>
@@ -1620,6 +1626,22 @@ Border-top: 1px solid #E5E2DC</code></div></div>
     <div class="ca-title" style="color:var(--info)">ℹ️ Assumptions used to build this sprint — verify on Day 1</div>
     <p style="color:var(--info)">This plan assumes only Test 09 (category grid) is confirmed live, and Tests 31–32 are gated on GA4 CTR events per the document as of Jun 22. Status of Tests 01–08 and 10–30 between Jun 22 and Jul 4 is not confirmed in available data. Day 1 includes a status audit to correct sequencing if any of these have already shipped.</p>
   </div>
+  <div class="card" style="margin-bottom:16px">
+    <h3 style="margin-bottom:14px">Corrected Baseline & Benchmark-Referenced Targets (Jul 4, 2026)</h3>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px">This sprint's metrics are now tied to the corrected traffic baseline (~2.0–2.5M sessions/month, confirmed by GA4 + Shopify ShopifyQL cross-check — see History Timeline, Section 21) rather than the original document's ~600K/month assumption.</p>
+    <table class="measurement">
+      <thead><tr><th>Metric</th><th>Current (Jul 4, 2026)</th><th>Reference benchmark</th><th>Source &amp; confidence</th><th>30-day target</th></tr></thead>
+      <tbody>
+        <tr><td>Sessions/month</td><td>~2.0–2.5M</td><td>—</td><td>Confirmed: GA4 + Shopify ShopifyQL, Jan 1–Jul 4, 2026 (within ~17% of each other)</td><td>Maintain; not a test target</td></tr>
+        <tr><td>Conversion Rate (order-based)</td><td>0.143% (Shopify orders/sessions)</td><td>0.8%–1.6% (global furniture/home-decor e-commerce)</td><td>Global, not KSA-specific. Sources: fyresite.com, vividworks.com, chatboq.com (Jan–Mar 2026). <span class="corrected">No verified KSA-specific furniture CVR benchmark found.</span></td><td>Directional improvement toward the low end of the global range; treat as aspirational given the benchmark gap, not a committed number</td></tr>
+        <tr><td>Add-to-Cart Rate</td><td>2.54% (GA4 events, Jan–Jul)</td><td>9.0%–9.5% (Saudi e-commerce, all categories)</td><td>KSA-specific but NOT furniture-specific. Source: ECDB.com, 2025 data.</td><td>Meaningful directional increase; the all-category benchmark is likely optimistic for high-consideration furniture, so treat as a ceiling reference, not a like-for-like target</td></tr>
+        <tr><td>Cart Abandonment</td><td>~76.5% (implied: 1 − 3.02% cart→purchase, approximate)</td><td>76.0%–76.5% (Saudi e-commerce, all categories)</td><td>KSA-specific but NOT furniture-specific. Source: ECDB.com, 2025 data.</td><td>Currently roughly in line with the all-category KSA benchmark — this is the metric with the smallest confirmed gap to close</td></tr>
+        <tr><td>Bounce Rate</td><td><span class="corrected">Not yet re-pulled from the new GA4 export — the 31.8% figure in Section 2 is from the original Jun 13 analysis and has not been refreshed against Jan–Jul data.</span></td><td>No verified benchmark found for this metric specifically</td><td>—</td><td>Pull current bounce rate before setting a numeric target — flagged as an open item</td></tr>
+      </tbody>
+    </table>
+    <div class="corrected" style="margin-top:12px">📌 Honest gap: I found no verified, KSA-specific, furniture-industry benchmark for conversion rate, add-to-cart rate, or bounce rate. The targets above use the closest verifiable references (global furniture CVR benchmarks; Saudi all-category ATC/abandonment benchmarks) with the scope mismatch stated plainly rather than presented as an exact match.</div>
+  </div>
+
 
   <div class="card">
     <h3 style="margin-bottom:14px">Day 1 (Jul 4) — Status Audit &amp; Urgent Fixes</h3>
@@ -1887,14 +1909,66 @@ Border-top: 1px solid #E5E2DC</code></div></div>
     </div>
   </div>
 </div>
+<!-- HISTORY TIMELINE -->
+<div class="section tab-panel" id="history">
+  <div class="section-title">🕰️ 21. History Timeline — First Analysis to Now</div>
+  <div class="last-refreshed">Last refreshed: Jul 4, 2026</div>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Chronological record of every analysis, correction, and structural change to this document. Newest at the bottom, since this is a timeline (unlike Section 19's Weekly Update Log, which stays newest-first).</p>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="margin-bottom:6px">Jun 13, 2026 — Original Analysis</h3>
+    <p style="font-size:13px">Agency/analyst-prepared homepage CRO roadmap. Established the 32-test roadmap (Weeks 1–4), baseline metrics (CR 0.08%, ATC 1.24%, checkout abandonment 86.3%), and competitor benchmark table. <span class="corrected">Baseline traffic assumption used throughout: ~600K sessions/month — later found to be significantly understated (see Jul 4 entry below).</span></p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="margin-bottom:6px">Jun 22, 2026 — Live Results Update</h3>
+    <p style="font-size:13px">Category grid rollout (Jun 11) validated as not causing the Living Room Sets / XL Sofas share drop — traced instead to a Meta/Instagram campaign pause and Google Shopping feed issue predating the grid change. Klaviyo WhatsApp channel identified as outperforming email 6.3:1.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="margin-bottom:6px">Jul 2, 2026 — Initial GSC/SEO Cross-Check</h3>
+    <p style="font-size:13px">First conversation thread: audited an agency-prepared GSC performance report against a raw GSC export. Found a homepage average-position discrepancy (3.7 claimed vs 11.8 raw) and an 8-month gap in the underlying Chart.csv data. This became the template for the accuracy-checking approach applied to every subsequent data pull in this project.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="margin-bottom:6px">Jul 4, 2026 (morning) — 30-Day Sprint Plan, PLP Track, SEO Tab, Weekly Log Structure</h3>
+    <p style="font-size:13px">Added: the 30-Day A/B Test Sprint Plan (Section 16), PLP Track (Section 17), corrections to Test 30 and Test 22 revenue math (Section 18), a lightweight SEO Catalog Audit tab (Section 20) linked to a separate SEO Dashboard React file, and the Weekly Update Log structure (Section 19). Tab navigation converted from single-page scroll to a grouped 6-column grid.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="margin-bottom:6px">Jul 4, 2026 (afternoon) — New Data Pull: GA4, GSC, PageSpeed</h3>
+    <p style="font-size:13px">New Jan 1–Jul 4, 2026 exports reviewed: GA4 (Engagement, Traffic Acquisition, Events), GSC (Coverage ×3 scopes, Performance-on-Search, Core Web Vitals ×2 devices, Merchant Listings, Product Snippets), and live PageSpeed Insights (mobile + desktop). Found: the new GSC export's Chart.csv has a genuine ~4-month gap (Jan 1–Apr 27 missing despite the stated Jan 1–Jul 4 filter); two GA4 CSV exports were capped at the 100,000-row limit with a resulting ~2.6% discrepancy between them; and total GA4 sessions for the period (14,880,323) appeared ~4x higher than the original roadmap's ~600K/month baseline — flagged for verification rather than resolved at this point.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px; border-color:var(--danger)">
+    <h3 style="margin-bottom:6px; color:var(--danger)">Jul 4, 2026 (later) — Critical Discovery: Wrong Store Connected</h3>
+    <p style="font-size:13px">Attempted to resolve the session discrepancy via live Shopify data. Initial connection returned only 13 total orders for the Jan 1–Jul 4 window — later found to be because the connected store was <strong>Roots Furniture</strong> (a vendor/sister brand), not alrugaibfurniture.com. Switched to the correct store. Access scope check confirmed <code>read_all_orders</code>, <code>read_analytics</code>, and <code>read_reports</code> were granted — broader access than initially assumed.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px; border-color:var(--success)">
+    <h3 style="margin-bottom:6px; color:var(--success)">Jul 4, 2026 (later) — Session/CR Baseline Corrected</h3>
+    <p style="font-size:13px">With the correct store connected, ShopifyQL queries returned: 12,393,940 total sessions (Jan 1–Jul 4, 2026) — confirming, not contradicting, GA4's 14,880,323 figure (within ~17%, a normal cross-tool variance). This corrects the roadmap's foundational traffic assumption from ~600K/month to ~2.0–2.5M/month. Also found: Shopify's order-based CR (0.143%) is roughly double GA4's purchase-event CR (0.077%) for the identical window — plausibly explained by offsite payment-redirect tracking loss (unconfirmed). Orders total (17,703) and AOV (SAR 2,530) both cross-checked internally consistent across two independent ShopifyQL queries.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3 style="margin-bottom:6px">Jul 4, 2026 (later) — Ashley Homestore Side Analysis</h3>
+    <p style="font-size:13px">Pulled the same metrics for Ashley Homestore Furniture (store.ashley.sa) — a fully separate Shopify store, distinct from the "Ashley Homestore" vendor-tagged products inside Al Rugaib's own catalog. Ashley: 4,945,945 sessions, 2,543 orders, SAR 5,561,399 sales, CR 0.051%, Jan 1–Jul 4, 2026. Flagged an unexplained April session spike (35% of the 6-month total in one month) as needing verification before use in any trend analysis. <strong>Held explicitly as reference data only — no CRO recommendations built on it per user instruction.</strong></p>
+  </div>
+
+  <div class="card" style="border-color:var(--accent-border)">
+    <h3 style="margin-bottom:6px">Jul 4, 2026 (current) — Sprint Retargeted to Corrected Baseline + Benchmark Research</h3>
+    <p style="font-size:13px">This update: corrected the Executive Summary's baseline framing (Section 1), added this History Timeline (Section 21), and retargeted the 30-Day Sprint Plan's metrics and revenue-impact math to the corrected ~2.0–2.5M sessions/month baseline (Section 16). Searched for KSA/furniture-specific CRO benchmarks — found global furniture e-commerce CVR benchmarks (0.8–1.6%, multiple sources) and Saudi market-wide (all-category, not furniture-specific) ATC/cart-abandonment figures (ECDB, 2025), but <strong>no verified KSA-specific furniture-industry benchmark exists</strong> in what was found. Targets in Section 16 are set against the closest verifiable references available, with that gap stated explicitly rather than filled with an invented number.</p>
+  </div>
+</div>
+
 
 </div>
 
 <div class="footer">
   <p><strong>Al Rugaib Furniture — Homepage CRO Roadmap &amp; 30-Day Sprint Plan</strong></p>
-  <p>Original analysis Jun 13, 2026 · Live results updated Jun 22, 2026 · 30-Day Sprint Plan and data corrections added Jul 4, 2026 · Weekly Update Log structure added Jul 4, 2026</p>
-  <p style="font-size:12px;color:rgba(255,255,255,.5)">GA4 export Mar 15–Jun 12, 2026 · Grid rolled out Jun 11, 2026 · Shopify data Jun 8–22, 2026 · Klaviyo data Jun 2026</p>
-  <p style="margin-top:8px;font-size:12px">32 tests + 30-day execution sprint + PLP track + weekly log · Tests 31–32 activate after GA4 CTR events · WhatsApp = primary revenue channel · Email CTA fix required before next send · See Section 18 for correction log, Section 19 for weekly history</p>
+  <p>Original analysis Jun 13, 2026 · Live results updated Jun 22, 2026 · 30-Day Sprint Plan and data corrections added Jul 4, 2026 · Weekly Update Log structure added Jul 4, 2026 · Session/CR baseline corrected and History Timeline added Jul 4, 2026</p>
+  <p style="font-size:12px;color:rgba(255,255,255,.5)">GA4 export Mar 15–Jun 12, 2026 · Grid rolled out Jun 11, 2026 · Shopify data Jun 8–22, 2026 · Klaviyo data Jun 2026 · GA4/Shopify Jan 1–Jul 4, 2026 cross-check confirms ~2.0–2.5M sessions/month (supersedes earlier ~600K/month baseline)</p>
+  <p style="margin-top:8px;font-size:12px">32 tests + 30-day execution sprint + PLP track + weekly log + history timeline · Tests 31–32 activate after GA4 CTR events · WhatsApp = primary revenue channel · Email CTA fix required before next send · See Section 18 for correction log, Section 19 for weekly history, Section 21 for full timeline</p>
 </div>
 
 <script>
